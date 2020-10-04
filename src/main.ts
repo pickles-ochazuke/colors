@@ -3,20 +3,19 @@ function main(param: g.GameMainParameterObject): void {
 	const scene = new g.Scene({game: g.game});
 	scene.loaded.add(() => {
 		// 画面に表示するブロックを作る
-
 		const rect = generateBlock(scene);
 
+		// 画面の中央に来るようにする
 		rect.x = g.game.width / 2;
 		rect.y = g.game.height / 2;
 
-		rect.update.add(() => {
-			//
-		});
+		// シーンにエンティティを登録する
 		scene.append(rect);
 	});
 	g.game.pushScene(scene);
 }
 
+// クリックしたら色が変わるエンティティを作成する
 function generateBlock(scene: g.Scene): g.E {
 	const block = new g.FilledRect({
 		scene: scene,
@@ -42,6 +41,7 @@ function generateBlock(scene: g.Scene): g.E {
 				block.cssColor = "#FF0000";
 				break;
 		}
+		// これを実行しないと見た目が変わらない
 		block.modified();
 	});
 
